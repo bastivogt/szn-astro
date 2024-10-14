@@ -1,0 +1,28 @@
+
+$primary: #8FBC12;
+$secondary: #B5DEF6;
+
+$navbar-light-active-color: $primary;
+$navbar-light-hover-color: $primary;
+
+$navbar-dark-hover-color: $primary;
+$navbar-dark-active-color: $primary;
+
+
+$nav-link-hover-color: $primary;
+
+
+
+
+// button
+// $btn-border-radius: 0;
+// $btn-border-radius-sm: 0;
+// $btn-border-radius-lg: 0;
+
+//$navbar-brand-font-size: 2rem;
+
+//$nav-link-font-size: 1.25rem;
+
+
+
+@import "../../../node_modules/bootstrap/scss/bootstrap.scss";

@@ -1,0 +1,64 @@
+---
+import NavLink from "./NavLink.astro";
+import { NAV_DATA, MENU_MAIN } from "../settings";
+
+const navMain = NAV_DATA.filter((item) => {
+    return item.menu === MENU_MAIN;
+});
+
+const navMainSorted = navMain.sort((a, b) => a.order - b.order);
+// <nav class="navbar bg-body-tertiary fixed-top shadow">
+---
+
+<nav class="navbar navbar-dark bg-dark shadow">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/">
+            <img
+                src="/assets/images/logo-szn-text-grey-light.svg"
+                height="60"
+            />
+        </a>
+        <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="offcanvas"
+            data-bs-target="#offcanvasNavbar"
+            aria-controls="offcanvasNavbar"
+            aria-label="Toggle navigation"
+        >
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div
+            class="offcanvas offcanvas-end text-bg-dark"
+            tabindex="-1"
+            id="offcanvasNavbar"
+            aria-labelledby="offcanvasNavbarLabel"
+        >
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title" id="offcanvasNavbarLabel">
+                    Navigation
+                </h5>
+                <button
+                    type="button"
+                    class="btn-close btn-close-white"
+                    data-bs-dismiss="offcanvas"
+                    aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+                <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                    {
+                        navMainSorted.map((item) => {
+                            return (
+                                <li class="nav-item">
+                                    <NavLink href={item.href}>
+                                        {item.title}
+                                    </NavLink>
+                                </li>
+                            );
+                        })
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+</nav>

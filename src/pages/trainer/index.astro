@@ -1,0 +1,27 @@
+---
+import PageHeader from "../../components/PageHeader.astro";
+import LayoutMainFull from "../../layouts/LayoutMainFull.astro";
+import TrainerListItem from "../../components/TrainerListItem.astro";
+
+import { getCollection } from "astro:content";
+
+const trainer = await getCollection("trainer");
+console.log(trainer);
+---
+
+<LayoutMainFull title="Trainer" description="Trainer Description">
+    <PageHeader>Trainer</PageHeader>
+    <div class="container section-padding">
+        <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-4">
+            {
+                trainer.map((item) => {
+                    return (
+                        <div class="col">
+                            <TrainerListItem trainer={item} />
+                        </div>
+                    );
+                })
+            }
+        </div>
+    </div>
+</LayoutMainFull>

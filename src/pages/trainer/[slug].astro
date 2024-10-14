@@ -1,0 +1,29 @@
+---
+import LayoutMainFull from "../../layouts/LayoutMainFull.astro";
+import { getCollection, getEntry } from "astro:content";
+import Image from "astro/components/Image.astro";
+
+const { slug } = Astro.params;
+
+const trainer = await getEntry("trainer", slug);
+console.log(trainer.data.img);
+const { Content } = await trainer.render();
+
+export async function getStaticPaths() {
+    const trainer = await getCollection("trainer");
+    const trainerPublished = trainer.filter((item) => {
+        return item.data.published === true;
+    });
+    return trainerPublished.map((item) => {
+        return { params: { slug: item.slug } };
+    });
+}
+---
+
+<LayoutMainFull title={slug} description="Description">
+    <h1>{trainer.data.firstname} {trainer.data.lastname}</h1>
+    <!-- <Image src={trainer.data.img} alt={trainer.data.firstname} width={300} /> -->
+    <Image src={trainer.data.img} alt={trainer.data.firstname} width={300} />
+    <Content />
+    <a class="btn btn-primary" href="/trainer">Zurück zu Trainer</a>
+</LayoutMainFull>

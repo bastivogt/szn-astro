@@ -1,0 +1,90 @@
+---
+import LayoutMainFull from "../../layouts/LayoutMainFull.astro";
+import { getCollection, getEntry, getEntries } from "astro:content";
+import { Image } from "astro:assets";
+import PageHeader from "../../components/PageHeader.astro";
+import Section from "../../components/Section.astro";
+import TrainerListItem from "../../components/TrainerListItem.astro";
+
+const { slug } = Astro.params;
+
+const course = await getEntry("courses", slug);
+
+const trainer = await getEntries(course.data.trainer);
+
+console.log("trainer", trainer);
+
+const { Content } = await course.render();
+
+export async function getStaticPaths() {
+    const courses = await getCollection("courses");
+    const coursesPublished = courses.filter((item) => {
+        return item.data.published === true;
+    });
+    return coursesPublished.map((item) => {
+        return { params: { slug: item.slug } };
+    });
+}
+---
+
+<LayoutMainFull title={slug} description="Description">
+    <div>
+        <Image
+            class="object-fit-cover w-100"
+            src={course.data.img}
+            alt={course.data.title}
+            width={2000}
+            height={600}
+        />
+    </div>
+    <PageHeader>{course.data.title}</PageHeader>
+    <!-- <Section class="bg-primary text-light">
+        <h1 class="display-1">{course.data.title}</h1>
+    </Section> -->
+    <Section>
+        <Content />
+        <!-- </Section>
+    <Section class="bg-primary text-light">
+        <h2 class="display-2 mb-3">Trainingszeiten</h2>
+        <div class="fs-5">
+            <ul>
+                {
+                    course.data.times.map((time) => {
+                        return <li>{time}</li>;
+                    })
+                }
+            </ul>
+        </div>
+    </Section> -->
+    </Section>
+    <Section class="bg-primary text-light">
+        <h2 class="display-2 mb-3">Trainingszeiten</h2>
+        <div class="fs-5">
+            <ul>
+                {
+                    course.data.times.map((time) => {
+                        return <li>{time}</li>;
+                    })
+                }
+            </ul>
+        </div>
+    </Section>
+    <Section>
+        <h2 class="display-2 mb-3">Trainer</h2>
+        <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-4">
+            {
+                trainer.map((item) => {
+                    return (
+                        <div class="col">
+                            <TrainerListItem trainer={item} />
+                        </div>
+                    );
+                })
+            }
+        </div>
+    </Section>
+    <Section class="bg-grey text-light">
+        <a class="btn btn-outline-light btn-lg" href="/kurse">Zurück zu Kurse</a
+        >
+    </Section>
+</LayoutMainFull>

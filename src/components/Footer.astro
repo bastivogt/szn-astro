@@ -1,0 +1,71 @@
+---
+import Contact from "./Contact.astro";
+import { NAV_DATA, MENU_MAIN, MENU_META } from "../settings";
+import { activeClass } from "../utils/functions";
+
+const pathname = new URL(Astro.request.url).pathname;
+
+const navMainSorted = NAV_DATA.filter((item) => {
+    return item.menu === MENU_MAIN;
+}).sort((a, b) => a.order - b.order);
+
+const navMetaSorted = NAV_DATA.filter((item) => {
+    return item.menu === MENU_META;
+}).sort((a, b) => a.order - b.order);
+
+//console.log(navMainSorted);
+//console.log(navMetaSorted);
+---
+
+<footer class="bg-dark text-light py-5 footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 mb-3">
+                <h4>Navigation</h4>
+                <nav>
+                    <ul>
+                        {
+                            navMainSorted.map((item) => {
+                                return (
+                                    <li>
+                                        <a
+                                            class={`link ${activeClass(pathname, item.href)}`}
+                                            href={item.href}
+                                        >
+                                            {item.title}
+                                        </a>
+                                    </li>
+                                );
+                            })
+                        }
+                    </ul>
+                </nav>
+            </div>
+            <div class="col-md-4 mb-3">
+                <h4>Rechtliches</h4>
+                <nav>
+                    <ul>
+                        {
+                            navMetaSorted.map((item) => {
+                                return (
+                                    <li>
+                                        <a
+                                            class={`link ${pathname.startsWith(item.href) ? "active" : ""}`}
+                                            href={item.href}
+                                        >
+                                            {item.title}
+                                        </a>
+                                    </li>
+                                );
+                            })
+                        }
+                    </ul>
+                </nav>
+            </div>
+            <div class="col-md-4 mb-3">
+                <h4>Kontakt</h4>
+                <Contact />
+            </div>
+        </div>
+    </div>
+</footer>

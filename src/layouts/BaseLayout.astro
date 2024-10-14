@@ -1,0 +1,30 @@
+---
+import { slide, fade, ViewTransitions } from "astro:transitions";
+import { PAGE_TITLE } from "../settings";
+import "../assets/css/style.css";
+
+const { title = "", description = "" } = Astro.props;
+---
+
+<!doctype html>
+<html lang="de" transition:animate={fade({ duration: ".5s" })}>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>{PAGE_TITLE} - {title}</title>
+        <meta name="description" content={description} />
+
+        <!-- <link rel="stylesheet" href="assets/css/style.css" /> -->
+
+        <ViewTransitions />
+    </head>
+    <body>
+        <slot />
+        <!-- <script is:inline src="assets/js/bootstrap.bundle.min.js"></script>
+        <script is:inline src="assets/js/app.js"></script> -->
+        <script type="module">
+            import "/assets/js/bootstrap.bundle.min.js";
+            import "/assets/js/app.js";
+        </script>
+    </body>
+</html>

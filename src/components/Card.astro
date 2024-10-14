@@ -1,0 +1,26 @@
+---
+import { Image } from "astro:assets";
+const { title = "TITLE", src, alt, footer = false } = Astro.props;
+---
+
+<div class="card overflow-hidden shadow">
+    <Image
+        class="card-image-top object-fit-cover w-100"
+        src={src}
+        alt={alt}
+        height={300}
+    />
+    <div class="card-body">
+        <h3>{title}</h3>
+        <slot />
+    </div>
+    {
+        footer === true ? (
+            <div class="card-footer">
+                <slot name="card-footer" />
+            </div>
+        ) : (
+            ""
+        )
+    }
+</div>

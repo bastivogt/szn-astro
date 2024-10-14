@@ -1,0 +1,18 @@
+---
+import Card from "./Card.astro";
+const { course } = Astro.props;
+---
+
+<Card
+    title={course.data.title}
+    src={course.data.img}
+    alt={course.data.title}
+    footer={true}
+>
+    <div>{course.data.excerpt.slice(0, 60)}...</div>
+    <div slot="card-footer">
+        <a class="btn btn-outline-primary" href={`/kurse/${course.slug}`}>
+            Mehr
+        </a>
+    </div>
+</Card>

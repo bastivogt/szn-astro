@@ -1,0 +1,16 @@
+---
+import { activeClass } from "../utils/functions";
+const { href, target = "_self" } = Astro.props;
+
+const pathname = new URL(Astro.request.url).pathname;
+
+//console.log("pathname:", pathname, "href:", href, "active:", activeClass());
+---
+
+<a
+    class={`nav-link ${activeClass(pathname, href)}`}
+    href={href}
+    target={target}
+>
+    <slot />
+</a>

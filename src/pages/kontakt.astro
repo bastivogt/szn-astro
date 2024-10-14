@@ -1,0 +1,57 @@
+---
+import LayoutMainFull from "../layouts/LayoutMainFull.astro";
+import { Image } from "astro:assets";
+import map from "../assets/images/mapimage.jpeg";
+import Contact from "../components/Contact.astro";
+import PageHeader from "../components/PageHeader.astro";
+import Section from "../components/Section.astro";
+---
+
+<LayoutMainFull title="Kontakt" description="Description">
+    <!-- <div class="map">
+        <Image
+            class="w-100 object-fit-cover"
+            src={map}
+            alt="Karte"
+            width={2000}
+            height={500}
+        />
+    </div> -->
+    <PageHeader>Kontakt</PageHeader>
+    <div class="section-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <Contact />
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <Image
+                        class="w-100 h-auto object-fit-cover"
+                        src={map}
+                        alt="Karte"
+                        width={1000}
+                    />
+                </div>
+            </div>
+        </div>
+    </div>
+    <Section class="bg-grey text-light">
+        <h3 class="display-3">Downloads</h3>
+        <div class="mb-2">
+            <a
+                class="btn btn-outline-light"
+                href="/assets/pdf/Mitgliedsantrag.pdf"
+                target="_blank">Mitgliedsantrag</a
+            >
+        </div>
+        <div>
+            <a
+                class="btn btn-outline-light"
+                href="/assets/pdf/Vereinssatzung.pdf"
+                target="_blank">Vereinssatzung</a
+            >
+        </div>
+    </Section>
+</LayoutMainFull>

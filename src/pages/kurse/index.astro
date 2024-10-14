@@ -1,0 +1,27 @@
+---
+import LayoutMainFull from "../../layouts/LayoutMainFull.astro";
+import CourseListItem from "../../components/CourseListItem.astro";
+import PageHeader from "../../components/PageHeader.astro";
+
+import { getCollection } from "astro:content";
+
+const courses = await getCollection("courses");
+console.log(courses);
+---
+
+<LayoutMainFull title="Kurse" description="Kurse Description">
+    <PageHeader>Kurse</PageHeader>
+    <div class="container section-padding">
+        <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-4">
+            {
+                courses.map((item) => {
+                    return (
+                        <div class="col">
+                            <CourseListItem course={item} />
+                        </div>
+                    );
+                })
+            }
+        </div>
+    </div>
+</LayoutMainFull>

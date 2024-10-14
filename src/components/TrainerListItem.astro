@@ -1,0 +1,38 @@
+---
+import Card from "./Card.astro";
+import { getCollection } from "astro:content";
+
+const { trainer } = Astro.props;
+
+const coursesAll = await getCollection("courses");
+const coursesTrainer = coursesAll.filter((item) => {
+    let match = false;
+    item.data.trainer.forEach((t) => {
+        if (t.slug === trainer.slug) {
+            match = true;
+        }
+    });
+    return match;
+});
+---
+
+<Card
+    title={trainer.data.firstname}
+    src={trainer.data.img}
+    alt={trainer.data.firstname}
+>
+    <div>
+        {
+            coursesTrainer.map((course) => {
+                return (
+                    <a
+                        class="btn btn-outline-primary btn-sm me-1"
+                        href={`/kurse/${course.slug}`}
+                    >
+                        {course.data.title}
+                    </a>
+                );
+            })
+        }
+    </div>
+</Card>

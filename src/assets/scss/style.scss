@@ -1,0 +1,59 @@
+@import "./bootstrap.scss";
+
+
+body {
+    overflow-x: hidden;
+}
+
+
+.navbar-brand {
+    transition: all .3s ease;
+    &:hover {
+        transform: scale(.9);
+    }
+}
+
+
+footer.footer {
+    nav ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+    }
+    a {
+        text-decoration: none;
+
+    }
+    a.active {
+        color: rgb(114, 150, 14);
+
+    }
+}
+
+
+.bg-grey-light {
+    background-color: #f3f3f3;
+}
+
+.bg-grey {
+    background-color: #686868;
+}
+
+
+
+
+.section-padding {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+}
+
+
+
+
+// .navbar-nav .nav-link.active, .navbar-nav .nav-link.show {
+//     color: $primary;
+// }
+
+
+
+
