@@ -15,7 +15,8 @@ const courseCollection = defineCollection({
     schema: ({image}) => z.object({
         title: z.string(),
         trainer: z.array(reference("trainer")).default([]),
-        img: image(),
+        imglist: image(),
+        imgdetail: image(),
         times: z.array(z.string()),
         published: z.boolean(),
         excerpt: z.string()
