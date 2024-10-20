@@ -1,7 +1,7 @@
 ---
 firstname: Denis
 lastname: Steiner
-img: ./images/user-dummy.jpg
+img: ./../../assets/images/trainer/user-dummy.jpg
 published: true
 ---
 ## TEXT

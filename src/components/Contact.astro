@@ -1,25 +1,23 @@
 ---
-
+import { contact } from "../settings";
 ---
 
 <div class="mb-3">
-    <strong>Sportzentrum Nord e.V.</strong>
+    <strong>{contact.name}</strong>
     <br />
-    Schillerstraße 37
+    {contact.street}
     <br />
-    06844 Dessau-Roßlau
+    {contact.plz}
+    {contact.city}
 </div>
 <div class="mb-3">
-    Tel: <a href="tel:+4917630710872">+49 176 30710872</a>
+    Tel: <a href={`tel:${contact.phone}`}>{contact.phone}</a>
     <br />
-    Mail: <a href="mailto:sportzentrumnord.dessau@gmail.com"
-        >sportzentrumnord.dessau@gmail.com</a
-    >
-</div>
-<div>
-    <a
-        class="btn btn-outline-primary"
-        href="https://maps.app.goo.gl/a3m9yXxQWHpz6gcP7"
-        target="_blank">Karte</a
-    >
+    Mail: <a href={`mailto:${contact.mail}`}>{contact.mail}</a>
+    <br />
+    <div class="mt-2">
+        <a class="btn btn-outline-primary" href={contact.mapUrl} target="_blank"
+            >Karte</a
+        >
+    </div>
 </div>
